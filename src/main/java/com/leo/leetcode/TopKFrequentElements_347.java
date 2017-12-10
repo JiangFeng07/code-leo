@@ -30,6 +30,7 @@ public class TopKFrequentElements_347 {
                 break;
             }
         }
+
         return result;
     }
 }
