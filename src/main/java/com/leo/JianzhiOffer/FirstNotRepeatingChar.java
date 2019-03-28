@@ -11,7 +11,7 @@ public class FirstNotRepeatingChar {
         if (str == null || str.length() == 0) {
             return -1;
         }
-        Map<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
         for (char ch : str.toCharArray()) {
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }

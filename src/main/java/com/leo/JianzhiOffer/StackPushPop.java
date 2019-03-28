@@ -7,7 +7,7 @@ import java.util.Stack;
  */
 public class StackPushPop {
     public static boolean IsPopOrder(int[] pushA, int[] popA) {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         int i = 0;
         int j = 0;
         stack.push(pushA[i++]);

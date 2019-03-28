@@ -6,34 +6,34 @@ import java.util.Stack;
  * Created by lionel on 18/2/9.
  */
 public class MyQueue<T> {
-    Stack<T> stack = new Stack<>();
-    Stack<T> helpStack = new Stack<>();
-
-    public void appendTail(T t) {
-        stack.add(t);
-    }
-
-    public T deleteHead() {
-        if (helpStack.size() > 0) {
-            return helpStack.pop();
+    public static int evalRPN(String[] tokens) {
+        if (tokens == null || tokens.length <= 0) {
+            return 0;
         }
-        if (stack.size() <= 0) {
-            return null;
-        }
-        while (stack.size() > 0) {
-            helpStack.add(stack.pop());
-        }
-        return helpStack.pop();
-    }
 
-    public static void main(String[] args) {
-        MyQueue<String> myQueue = new MyQueue<>();
-        myQueue.appendTail("a");
-        System.out.println(myQueue.deleteHead());
+        Stack<String> stack = new Stack<String>();
+        for (String token : tokens) {
+            if (!"+".equals(token) && !"-".equals(token) &&
+                    !"*".equals(token) && !"/".equals(token)) {
+                stack.push(token);
+            } else {
+                int val1 = Integer.valueOf(stack.pop());
+                int val2 = Integer.valueOf(stack.pop());
+                if ("+".equals(token)) {
+                    stack.push(String.valueOf(val1 + val2));
+                }
+                if ("-".equals(token)) {
+                    stack.push(String.valueOf(val2 - val1));
+                }
+                if ("*".equals(token)) {
+                    stack.push(String.valueOf(val1 * val2));
+                }
+                if ("/".equals(token)) {
+                    stack.push(String.valueOf(val1 / val2));
+                }
+            }
+        }
 
-        myQueue.appendTail("b");
-        myQueue.appendTail("c");
-        System.out.println(myQueue.deleteHead());
-        System.out.println(myQueue.deleteHead());
+        return Integer.valueOf(stack.pop());
     }
 }
